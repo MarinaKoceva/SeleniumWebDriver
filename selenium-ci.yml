@@ -1,0 +1,38 @@
+name: Selenium CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build-and-test:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '6.0.x'
+
+    - name: Install Chrome
+      uses: browser-actions/setup-chrome@v1
+
+    - name: Restore dependencies
+      run: dotnet restore
+
+    - name: Build solution
+      run: dotnet build --configuration Release --no-restore
+
+    - name: Run Tests - HTML Elements 01
+      run: dotnet test ./HTMLElements01/HTMLElements01.csproj --no-build --verbosity normal
+
+    - name: Run Tests - HTML Elements 02
+      run: dotnet test ./HTMLElements02/HTMLElements02.csproj --no-build --verbosity normal
+
+    - name: Run Tests - HTML Elements 03
+      run: dotnet test ./HTMLElements03/HTMLElements03.csproj --no-build --verbosity normal

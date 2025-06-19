@@ -28,11 +28,12 @@ jobs:
     - name: Build solution
       run: dotnet build --configuration Release --no-restore
 
-    - name: Run Tests - TestProject1
-      run: dotnet test ./TestProject1/TestProject1.csproj --no-build --verbosity normal
+        - name: Run Tests - TestProject1
+      run: dotnet test ./TestProject1/TestProject1.csproj --verbosity normal
 
     - name: Run Tests - TestProject2
-      run: dotnet test ./TestProject2/TestProject2.csproj --no-build --verbosity normal
+      run: dotnet test ./TestProject2/TestProject2.csproj --verbosity normal
 
     - name: Run Tests - TestProject3
-      run: dotnet test ./TestProject3/TestProject3.csproj --no-build --verbosity normal
+      run: dotnet test ./TestProject3/TestProject3.csproj --verbosity normal
+

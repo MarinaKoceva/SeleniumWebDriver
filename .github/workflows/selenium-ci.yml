@@ -11,29 +11,28 @@ jobs:
     runs-on: windows-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup .NET
-      uses: actions/setup-dotnet@v4
-      with:
-        dotnet-version: '6.0.x'
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '6.0.x'
 
-    - name: Install Chrome
-      uses: browser-actions/setup-chrome@v1
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v1
 
-    - name: Restore dependencies
-      run: dotnet restore
+      - name: Restore dependencies
+        run: dotnet restore
 
-    - name: Build solution
-      run: dotnet build --configuration Release --no-restore
+      - name: Build solution
+        run: dotnet build --configuration Release
 
-        - name: Run Tests - TestProject1
-      run: dotnet test ./TestProject1/TestProject1.csproj --verbosity normal
+      - name: Run Tests - TestProject1
+        run: dotnet test ./TestProject1/TestProject1.csproj --verbosity normal
 
-    - name: Run Tests - TestProject2
-      run: dotnet test ./TestProject2/TestProject2.csproj --verbosity normal
+      - name: Run Tests - TestProject2
+        run: dotnet test ./TestProject2/TestProject2.csproj --verbosity normal
 
-    - name: Run Tests - TestProject3
-      run: dotnet test ./TestProject3/TestProject3.csproj --verbosity normal
-
+      - name: Run Tests - TestProject3
+        run: dotnet test ./TestProject3/TestProject3.csproj --verbosity normal
